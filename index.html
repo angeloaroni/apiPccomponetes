@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <title>API</title>
+</head>
+
+<body>
+    <div class="container my-5">
+        <h2>Datos</h2>
+        <form id="formulario">
+            <input type="text" name="pedido" placeholder="Ingresa numero pedido" class="form-control my-3">
+            <input type="file" name="files" class="form-control my-3">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </form>
+        <div class="mt-3" id="respuesta">
+
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h2>Documentos del pedido</h2>
+        <button class="btn btn-danger w-30" onclick="traer()">Obtener</button>
+        <div class="mt-5" id="contenido">
+
+        </div>
+    </div>
+
+    <script>
+        var form = new FormData();
+        form.append("file", fileInput.files[0], "/C:/Users/angeloaroni/Documents/api/Factura_40900251.pdf");
+        form.append("order_documents", "<body> <order_documents> <order_document> <file_name>Factura_40900251.pdf</file_name> <type_code>CUSTOMER_INVOICE</type_code> </order_document></order_documents></body>");
+
+        var settings = {
+            "url": "https://pccomponentes-prod.mirakl.net/api/orders/423627-A/documents",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+        };
+
+        $.ajax(settings).done(function(response) {
+            console.log(response);
+        });
+
+        /* var myHeaders = new Headers();
+         myHeaders.append("Authorization", "7a154367-e7a1-44fb-8936-87328676f474");
+         myHeaders.append("Accept", "application/json");
+         myHeaders.append("Content-Type", "multipart/form-data");
+
+         var formdata = new FormData();
+         formdata.append("files", fileInput.files[0], "/C:/Users/angeloaroni/Documents/api/Factura_40900251.pdf");
+         formdata.append("order_documents", "<body> <order_documents> <order_document> <file_name>Factura_40900251.pdf</file_name> <type_code>CUSTOMER_INVOICE</type_code> </order_document></order_documents></body>");
+
+         var requestOptions = {
+             method: 'POST',
+             headers: myHeaders,
+             body: formdata,
+             redirect: 'follow'
+         };
+
+         fetch("https://pccomponentes-prod.mirakl.net/api/orders/423627-A/documents", requestOptions)
+             .then(response => response.text())
+             .then(result => console.log(result))
+             .catch(error => console.log('error', error));*/
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
