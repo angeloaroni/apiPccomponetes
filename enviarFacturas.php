@@ -208,7 +208,7 @@ function sendPost($ped, $fac)
     <p>Pedido o factura incorrecta</p>
 </div>
 <?php
-            //header("Refresh:5");  
+            header("Refresh:5");  
             break;
         case 200:
             //$result = "Datos subidos correctamente";
